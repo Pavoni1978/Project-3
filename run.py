@@ -8,8 +8,8 @@ SCOPE = [
 
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
-GSPREAD_CLIENT = gspread_authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.OPEN('Project-3')
+GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
+SHEET = GSPREAD_CLIENT.open('Project-3')
 
 
 def get_sales_data():
@@ -19,10 +19,29 @@ def get_sales_data():
 
     print("Please enter sales data.")
     print("Data should be six numbers seperated by commas.")
-    print("Example 10,20,30,40,50,60")
+    print("Example 10,20,30,40,50,60\n")
 
-    data_str = input("Enter your data here.")
-    print(f"The data provided is {data-str}")
+    data_str = input("Enter your data here:")
 
+
+    sales_data = data_str.split(",")
+    validate_data(sales_data)
+
+def validate_data(values):
+    '''
+    Inside the try, converts all string values into integers.
+    Raises ValueError if strings cannot be converted into int,
+    or if the aren't exactly six values.
+    '''
+
+    try:
+        if len(values) !=6:
+            raise ValueError(
+            f"exactly 6 values required, you provided {len(values)}"
+             )
+
+
+    except ValueError as e:
+        print(f"Invalid data: {e}, please try again.\n")
 
 get_sales_data()
