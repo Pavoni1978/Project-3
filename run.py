@@ -11,6 +11,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread_authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.OPEN('Project-3')
 
+
 def get_sales_data():
     '''
     Get sales figures input from the user
@@ -22,5 +23,6 @@ def get_sales_data():
 
     data_str = input("Enter your data here.")
     print(f"The data provided is {data-str}")
+
 
 get_sales_data()
