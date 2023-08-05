@@ -25,7 +25,7 @@ while True:
 
 
     sales_data = data_str.split(",")
-    
+ 
     if validate_data(sales_data)
     print("data is valid")
     break
@@ -127,5 +127,5 @@ def main():
     update_worksheet(stock_data, "stock")
 
 
-print("Welcome to Love Sandwiches Data Automation")
+print("Welcome to Goldfish4You Automation")
 main()
