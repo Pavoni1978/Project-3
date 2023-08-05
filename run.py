@@ -1,12 +1,14 @@
 import gspread
 from google.oauth2.service_account import Credentials
+import json
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
     ]
 
-CREDS = Credentials.from_service_account_file('creds.json')
+creds = json.load (open('creds.json'))
+CREDS = Credentials.from_service_account_info(creds)
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('Project-3')
@@ -37,7 +39,7 @@ def validate_data(values):
         if len(values) != 6:
             raise ValueError(
         
-        f"Exactly 6 values required, you provided {len(values)}"
+              f"Exactly 6 values required, you provided {len(values)}"
              )
 
     except ValueError as e:
@@ -115,8 +117,8 @@ def main():
     """
     Run all program functions
     """
-    data = get_sales_data()
-    sales_data = [int(num) for num in data]
+    sales_data = get_sales_data()
+    sales_data = [int(num) for num in sales_data]
     update_worksheet(sales_data, "sales")
     new_surplus_data = calculate_surplus_data(sales_data)
     update_worksheet(new_surplus_data, "surplus")
