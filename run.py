@@ -16,6 +16,8 @@ def get_sales_data():
     '''
     Get sales figures input from the user
     '''
+
+
 while True:
     print("Please enter sales data.")
     print("Data should be six numbers seperated by commas.")
@@ -23,12 +25,6 @@ while True:
 
     data_str = input("Enter your data here:\n")
 
-
-    sales_data = data_str.split(",")
- 
-    if validate_data(sales_data)
-    print("data is valid")
-    break
 
 def validate_data(values):
     '''
@@ -38,11 +34,11 @@ def validate_data(values):
     '''
 
     try:
-        if len(values) !=6:
+        if len(values) != 6:
             raise ValueError(
-            f"exactly 6 values required, you provided {len(values)}"
+        
+        f"Exactly 6 values required, you provided {len(values)}"
              )
-
 
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
@@ -50,7 +46,9 @@ def validate_data(values):
 
     return True
 
+
 def update_worksheet(data, worksheet):
+
     """
     Receives a list of integers to be inserted into a worksheet
     Update the relevant worksheet with the data provided
